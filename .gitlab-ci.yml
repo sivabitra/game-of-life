@@ -1,18 +1,25 @@
+stages:
+    - compile
+    - package
+ 
+variables:
+    varName1: varvalue
+ 
+ 
 compile_job:
     stage: compile
     script:
         - apt update -y
         - apt install mvn -y
-        - cd /path/to/pom.xml
         - mvn compile
     only:
         refs:
-            - master
+            - main
  
- build_job:
-    stage: build
+build_job:
+    stage: package
     script:
         - mvn package
     only:
         refs:
-            - master
+            - main
